@@ -14,32 +14,158 @@ export type Database = {
   }
   public: {
     Tables: {
+      bank_accounts: {
+        Row: {
+          account_number: string
+          agency: string
+          bank: string
+          created_at: string
+          id: string
+          name: string
+          opening_balance: number
+          owner_id: string
+          pix_key: string
+        }
+        Insert: {
+          account_number?: string
+          agency?: string
+          bank?: string
+          created_at?: string
+          id?: string
+          name: string
+          opening_balance?: number
+          owner_id?: string
+          pix_key?: string
+        }
+        Update: {
+          account_number?: string
+          agency?: string
+          bank?: string
+          created_at?: string
+          id?: string
+          name?: string
+          opening_balance?: number
+          owner_id?: string
+          pix_key?: string
+        }
+        Relationships: []
+      }
       clients: {
         Row: {
+          address_number: string
+          city: string
+          complement: string
           created_at: string
+          document: string
           email: string
           id: string
           name: string
+          neighborhood: string
+          notes: string
           owner_id: string
+          person_type: string
           phone: string
+          postal_code: string
+          state: string
+          street: string
         }
         Insert: {
+          address_number?: string
+          city?: string
+          complement?: string
           created_at?: string
+          document?: string
           email?: string
           id?: string
           name: string
+          neighborhood?: string
+          notes?: string
           owner_id?: string
+          person_type?: string
           phone?: string
+          postal_code?: string
+          state?: string
+          street?: string
         }
         Update: {
+          address_number?: string
+          city?: string
+          complement?: string
           created_at?: string
+          document?: string
           email?: string
           id?: string
           name?: string
+          neighborhood?: string
+          notes?: string
           owner_id?: string
+          person_type?: string
           phone?: string
+          postal_code?: string
+          state?: string
+          street?: string
         }
         Relationships: []
+      }
+      financial_entries: {
+        Row: {
+          amount: number
+          bank_account_id: string | null
+          category: string
+          created_at: string
+          description: string
+          due_date: string
+          id: string
+          kind: string
+          order_id: string | null
+          owner_id: string
+          paid_date: string | null
+          payment_method: string
+        }
+        Insert: {
+          amount: number
+          bank_account_id?: string | null
+          category?: string
+          created_at?: string
+          description: string
+          due_date: string
+          id?: string
+          kind: string
+          order_id?: string | null
+          owner_id?: string
+          paid_date?: string | null
+          payment_method?: string
+        }
+        Update: {
+          amount?: number
+          bank_account_id?: string | null
+          category?: string
+          created_at?: string
+          description?: string
+          due_date?: string
+          id?: string
+          kind?: string
+          order_id?: string | null
+          owner_id?: string
+          paid_date?: string | null
+          payment_method?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "financial_entries_bank_account_id_fkey"
+            columns: ["bank_account_id"]
+            isOneToOne: false
+            referencedRelation: "bank_accounts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "financial_entries_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "service_orders"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       service_orders: {
         Row: {

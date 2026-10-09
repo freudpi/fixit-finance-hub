@@ -8,6 +8,13 @@
       "when": 1791512313116,
       "tag": "0000_service_management",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791512442541,
+      "tag": "0001_finance_and_client_details",
+      "breakpoints": true
     }
   ]
 }
