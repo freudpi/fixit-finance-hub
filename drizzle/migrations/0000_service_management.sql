@@ -1,0 +1,12 @@
+CREATE TABLE public.clients (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), owner_id uuid NOT NULL DEFAULT auth.uid(), name text NOT NULL, phone text NOT NULL DEFAULT '', email text NOT NULL DEFAULT '', created_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.clients TO authenticated;
+GRANT ALL ON public.clients TO service_role;
+ALTER TABLE public.clients ENABLE ROW LEVEL SECURITY;
+CREATE POLICY clients_owner ON public.clients FOR ALL TO authenticated USING (owner_id = auth.uid()) WITH CHECK (owner_id = auth.uid());
+CREATE TABLE public.service_orders (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), number bigint GENERATED ALWAYS AS IDENTITY, owner_id uuid NOT NULL DEFAULT auth.uid(), client_id uuid REFERENCES public.clients(id), client_name text NOT NULL, equipment text NOT NULL, problem text NOT NULL DEFAULT '', diagnosis text NOT NULL DEFAULT '', status text NOT NULL DEFAULT 'Aberta' CHECK (status IN ('Aberta','Em análise','Em reparo','Aguardando peças','Concluída','Entregue','Cancelada')), technician text NOT NULL DEFAULT '', amount numeric(12,2) NOT NULL DEFAULT 0 CHECK (amount >= 0), due_date date, created_at timestamptz NOT NULL DEFAULT now());
+GRANT SELECT, INSERT, UPDATE, DELETE ON public.service_orders TO authenticated;
+GRANT ALL ON public.service_orders TO service_role;
+GRANT USAGE, SELECT ON SEQUENCE public.service_orders_number_seq TO authenticated, service_role;
+ALTER TABLE public.service_orders ENABLE ROW LEVEL SECURITY;
+CREATE POLICY orders_owner ON public.service_orders FOR ALL TO authenticated USING (owner_id = auth.uid()) WITH CHECK (owner_id = auth.uid() AND (client_id IS NULL OR EXISTS (SELECT 1 FROM public.clients WHERE clients.id = service_orders.client_id AND clients.owner_id = auth.uid())));
+CREATE INDEX orders_owner_created ON public.service_orders(owner_id,created_at DESC);

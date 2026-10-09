@@ -1,6 +1,13 @@
-# Página Eletrônica Silva
-- [ ] Consultar identidade e dados oficiais do site.
-- [ ] Usar o logotipo enviado e criar o ícone do navegador.
-- [ ] Criar a página nas cores da marca.
-- [ ] Definir e implementar as funções de mapas solicitadas.
-- [ ] Verificar a página e os controles disponíveis.
+# Eletrônica Silva — primeira versão
+- [x] Consultar identidade e dados oficiais e usar logotipo e favicon.
+- [x] Criar a página nas cores da marca.
+- [x] Implementar cadastro e edição de ordens, filtros e exportação.
+- [x] Ampliar clientes com documento, endereço e observações.
+- [x] Implementar contas bancárias, receitas, despesas, baixa e estorno.
+- [x] Gerar receita vinculada à ordem, impedindo duplicação.
+- [x] Adicionar mensagens manuais de cliente e status pelo WhatsApp.
+- [x] Verificar navegação, abertura de entrada, telas e ausência de erros no navegador.
+- [ ] Validar criação e leitura com conta conectada — bloqueado: não há usuários cadastrados; usuário precisa criar conta e entrar.
+- [ ] Integrar Mercado Pago — bloqueado: confirmação e Access Token da conta Mercado Pago.
+- [ ] Automatizar WhatsApp — bloqueado: conexão WhatsApp Business, templates aprovados e confirmação de custos.
+- [ ] Cobrir módulos restantes do MapOS (estoque, produtos/serviços, vendas, garantias e permissões) — bloqueado: definir prioridade para as próximas etapas; esta versão não equivale ao MapOS completo.
