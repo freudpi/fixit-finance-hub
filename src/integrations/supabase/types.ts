@@ -14,7 +14,89 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      clients: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          name: string
+          owner_id: string
+          phone: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string
+          id?: string
+          name: string
+          owner_id?: string
+          phone?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          owner_id?: string
+          phone?: string
+        }
+        Relationships: []
+      }
+      service_orders: {
+        Row: {
+          amount: number
+          client_id: string | null
+          client_name: string
+          created_at: string
+          diagnosis: string
+          due_date: string | null
+          equipment: string
+          id: string
+          number: number
+          owner_id: string
+          problem: string
+          status: string
+          technician: string
+        }
+        Insert: {
+          amount?: number
+          client_id?: string | null
+          client_name: string
+          created_at?: string
+          diagnosis?: string
+          due_date?: string | null
+          equipment: string
+          id?: string
+          number?: never
+          owner_id?: string
+          problem?: string
+          status?: string
+          technician?: string
+        }
+        Update: {
+          amount?: number
+          client_id?: string | null
+          client_name?: string
+          created_at?: string
+          diagnosis?: string
+          due_date?: string | null
+          equipment?: string
+          id?: string
+          number?: never
+          owner_id?: string
+          problem?: string
+          status?: string
+          technician?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_orders_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
