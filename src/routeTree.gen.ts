@@ -10,33 +10,63 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ClientesRouteImport } from './routes/clientes'
+import { Route as RedefinirSenhaRouteImport } from './routes/redefinir-senha'
+import { Route as RelatoriosRouteImport } from './routes/relatorios'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ClientesRoute = ClientesRouteImport.update({
+  id: '/clientes',
+  path: '/clientes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RedefinirSenhaRoute = RedefinirSenhaRouteImport.update({
+  id: '/redefinir-senha',
+  path: '/redefinir-senha',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RelatoriosRoute = RelatoriosRouteImport.update({
+  id: '/relatorios',
+  path: '/relatorios',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/clientes': typeof ClientesRoute
+  '/redefinir-senha': typeof RedefinirSenhaRoute
+  '/relatorios': typeof RelatoriosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/clientes': typeof ClientesRoute
+  '/redefinir-senha': typeof RedefinirSenhaRoute
+  '/relatorios': typeof RelatoriosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/clientes': typeof ClientesRoute
+  '/redefinir-senha': typeof RedefinirSenhaRoute
+  '/relatorios': typeof RelatoriosRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/clientes' | '/redefinir-senha' | '/relatorios'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/clientes' | '/redefinir-senha' | '/relatorios'
+  id: '__root__' | '/' | '/clientes' | '/redefinir-senha' | '/relatorios'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ClientesRoute: typeof ClientesRoute
+  RedefinirSenhaRoute: typeof RedefinirSenhaRoute
+  RelatoriosRoute: typeof RelatoriosRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +78,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/clientes': {
+      id: '/clientes'
+      path: '/clientes'
+      fullPath: '/clientes'
+      preLoaderRoute: typeof ClientesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/redefinir-senha': {
+      id: '/redefinir-senha'
+      path: '/redefinir-senha'
+      fullPath: '/redefinir-senha'
+      preLoaderRoute: typeof RedefinirSenhaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/relatorios': {
+      id: '/relatorios'
+      path: '/relatorios'
+      fullPath: '/relatorios'
+      preLoaderRoute: typeof RelatoriosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ClientesRoute: ClientesRoute,
+  RedefinirSenhaRoute: RedefinirSenhaRoute,
+  RelatoriosRoute: RelatoriosRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
