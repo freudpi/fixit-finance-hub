@@ -15,6 +15,34 @@
       "when": 1791512442541,
       "tag": "0001_finance_and_client_details",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791593110408,
+      "tag": "0002_approval_status",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791593229766,
+      "tag": "0003_team_roles",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791593256858,
+      "tag": "0004_audit_log",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1791593285749,
+      "tag": "0005_assignment_notifications",
+      "breakpoints": true
     }
   ]
 }

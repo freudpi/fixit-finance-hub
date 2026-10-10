@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      audit_log: {
+        Row: {
+          action: string
+          changes: Json
+          created_at: string
+          id: string
+          record_id: string | null
+          table_name: string
+          user_email: string
+          user_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          action: string
+          changes?: Json
+          created_at?: string
+          id?: string
+          record_id?: string | null
+          table_name: string
+          user_email?: string
+          user_id?: string | null
+          workspace_id: string
+        }
+        Update: {
+          action?: string
+          changes?: Json
+          created_at?: string
+          id?: string
+          record_id?: string | null
+          table_name?: string
+          user_email?: string
+          user_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
+      }
       bank_accounts: {
         Row: {
           account_number: string
@@ -167,6 +203,44 @@ export type Database = {
           },
         ]
       }
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          order_id: string | null
+          read_at: string | null
+          recipient_email: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          order_id?: string | null
+          read_at?: string | null
+          recipient_email: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          order_id?: string | null
+          read_at?: string | null
+          recipient_email?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "service_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       service_orders: {
         Row: {
           amount: number
@@ -182,6 +256,7 @@ export type Database = {
           problem: string
           status: string
           technician: string
+          technician_id: string | null
         }
         Insert: {
           amount?: number
@@ -197,6 +272,7 @@ export type Database = {
           problem?: string
           status?: string
           technician?: string
+          technician_id?: string | null
         }
         Update: {
           amount?: number
@@ -212,6 +288,7 @@ export type Database = {
           problem?: string
           status?: string
           technician?: string
+          technician_id?: string | null
         }
         Relationships: [
           {
@@ -221,14 +298,75 @@ export type Database = {
             referencedRelation: "clients"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "service_orders_technician_id_fkey"
+            columns: ["technician_id"]
+            isOneToOne: false
+            referencedRelation: "team_members"
+            referencedColumns: ["id"]
+          },
         ]
+      }
+      team_members: {
+        Row: {
+          active: boolean
+          created_at: string
+          email: string
+          id: string
+          name: string
+          role: string
+          user_id: string | null
+          workspace_id: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          email: string
+          id?: string
+          name: string
+          role: string
+          user_id?: string | null
+          workspace_id?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          role?: string
+          user_id?: string | null
+          workspace_id?: string
+        }
+        Relationships: []
       }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      link_membership: { Args: never; Returns: undefined }
+      my_membership: {
+        Args: never
+        Returns: {
+          active: boolean
+          created_at: string
+          email: string
+          id: string
+          name: string
+          role: string
+          user_id: string | null
+          workspace_id: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "team_members"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      my_role: { Args: never; Returns: string }
+      my_workspace: { Args: never; Returns: string }
     }
     Enums: {
       [_ in never]: never

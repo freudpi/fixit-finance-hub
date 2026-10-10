@@ -10,15 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuditoriaRouteImport } from './routes/auditoria'
 import { Route as BancosRouteImport } from './routes/bancos'
 import { Route as ClientesRouteImport } from './routes/clientes'
+import { Route as EquipeRouteImport } from './routes/equipe'
 import { Route as FinanceiroRouteImport } from './routes/financeiro'
+import { Route as PainelRouteImport } from './routes/painel'
 import { Route as RedefinirSenhaRouteImport } from './routes/redefinir-senha'
 import { Route as RelatoriosRouteImport } from './routes/relatorios'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuditoriaRoute = AuditoriaRouteImport.update({
+  id: '/auditoria',
+  path: '/auditoria',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BancosRoute = BancosRouteImport.update({
@@ -31,9 +39,19 @@ const ClientesRoute = ClientesRouteImport.update({
   path: '/clientes',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EquipeRoute = EquipeRouteImport.update({
+  id: '/equipe',
+  path: '/equipe',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FinanceiroRoute = FinanceiroRouteImport.update({
   id: '/financeiro',
   path: '/financeiro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PainelRoute = PainelRouteImport.update({
+  id: '/painel',
+  path: '/painel',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RedefinirSenhaRoute = RedefinirSenhaRouteImport.update({
@@ -49,26 +67,35 @@ const RelatoriosRoute = RelatoriosRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auditoria': typeof AuditoriaRoute
   '/bancos': typeof BancosRoute
   '/clientes': typeof ClientesRoute
+  '/equipe': typeof EquipeRoute
   '/financeiro': typeof FinanceiroRoute
+  '/painel': typeof PainelRoute
   '/redefinir-senha': typeof RedefinirSenhaRoute
   '/relatorios': typeof RelatoriosRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auditoria': typeof AuditoriaRoute
   '/bancos': typeof BancosRoute
   '/clientes': typeof ClientesRoute
+  '/equipe': typeof EquipeRoute
   '/financeiro': typeof FinanceiroRoute
+  '/painel': typeof PainelRoute
   '/redefinir-senha': typeof RedefinirSenhaRoute
   '/relatorios': typeof RelatoriosRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auditoria': typeof AuditoriaRoute
   '/bancos': typeof BancosRoute
   '/clientes': typeof ClientesRoute
+  '/equipe': typeof EquipeRoute
   '/financeiro': typeof FinanceiroRoute
+  '/painel': typeof PainelRoute
   '/redefinir-senha': typeof RedefinirSenhaRoute
   '/relatorios': typeof RelatoriosRoute
 }
@@ -76,34 +103,46 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auditoria'
     | '/bancos'
     | '/clientes'
+    | '/equipe'
     | '/financeiro'
+    | '/painel'
     | '/redefinir-senha'
     | '/relatorios'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auditoria'
     | '/bancos'
     | '/clientes'
+    | '/equipe'
     | '/financeiro'
+    | '/painel'
     | '/redefinir-senha'
     | '/relatorios'
   id:
     | '__root__'
     | '/'
+    | '/auditoria'
     | '/bancos'
     | '/clientes'
+    | '/equipe'
     | '/financeiro'
+    | '/painel'
     | '/redefinir-senha'
     | '/relatorios'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuditoriaRoute: typeof AuditoriaRoute
   BancosRoute: typeof BancosRoute
   ClientesRoute: typeof ClientesRoute
+  EquipeRoute: typeof EquipeRoute
   FinanceiroRoute: typeof FinanceiroRoute
+  PainelRoute: typeof PainelRoute
   RedefinirSenhaRoute: typeof RedefinirSenhaRoute
   RelatoriosRoute: typeof RelatoriosRoute
 }
@@ -115,6 +154,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auditoria': {
+      id: '/auditoria'
+      path: '/auditoria'
+      fullPath: '/auditoria'
+      preLoaderRoute: typeof AuditoriaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bancos': {
@@ -131,11 +177,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ClientesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/equipe': {
+      id: '/equipe'
+      path: '/equipe'
+      fullPath: '/equipe'
+      preLoaderRoute: typeof EquipeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/financeiro': {
       id: '/financeiro'
       path: '/financeiro'
       fullPath: '/financeiro'
       preLoaderRoute: typeof FinanceiroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/painel': {
+      id: '/painel'
+      path: '/painel'
+      fullPath: '/painel'
+      preLoaderRoute: typeof PainelRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/redefinir-senha': {
@@ -157,9 +217,12 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuditoriaRoute: AuditoriaRoute,
   BancosRoute: BancosRoute,
   ClientesRoute: ClientesRoute,
+  EquipeRoute: EquipeRoute,
   FinanceiroRoute: FinanceiroRoute,
+  PainelRoute: PainelRoute,
   RedefinirSenhaRoute: RedefinirSenhaRoute,
   RelatoriosRoute: RelatoriosRoute,
 }
