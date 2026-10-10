@@ -1,0 +1,2 @@
+ALTER TABLE public.service_orders DROP CONSTRAINT IF EXISTS service_orders_status_check;
+ALTER TABLE public.service_orders ADD CONSTRAINT service_orders_status_check CHECK (status IN ('Aberta','Em análise','Aguardando aprovação','Em reparo','Aguardando peças','Concluída','Entregue','Cancelada'));
