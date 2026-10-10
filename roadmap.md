@@ -10,4 +10,5 @@
 - [ ] Validar criação e leitura com conta conectada — bloqueado: não há usuários cadastrados; usuário precisa criar conta e entrar.
 - [ ] Integrar Mercado Pago — bloqueado: confirmação e Access Token da conta Mercado Pago.
 - [ ] Automatizar WhatsApp — bloqueado: conexão WhatsApp Business, templates aprovados e confirmação de custos.
-- [ ] Cobrir módulos restantes do MapOS (estoque, produtos/serviços, vendas, garantias e permissões) — bloqueado: definir prioridade para as próximas etapas; esta versão não equivale ao MapOS completo.
+- [ ] Cobrir módulos restantes do MapOS (estoque, produtos/serviços, vendas, garantias e permissões) — bloqueado: definir prioridade para as próximas etapas; esta versão não equivale ao MapOS completo.- [ ] Gerar PDFs de OS, orçamento e recibo com a marca.
+- [ ] Painel com serviços por status, faturamento do período e ordens aguardando aprovação.
