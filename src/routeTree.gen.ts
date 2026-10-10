@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as BancosRouteImport } from './routes/bancos'
 import { Route as ClientesRouteImport } from './routes/clientes'
 import { Route as FinanceiroRouteImport } from './routes/financeiro'
+import { Route as PainelRouteImport } from './routes/painel'
 import { Route as RedefinirSenhaRouteImport } from './routes/redefinir-senha'
 import { Route as RelatoriosRouteImport } from './routes/relatorios'
 
@@ -36,6 +37,11 @@ const FinanceiroRoute = FinanceiroRouteImport.update({
   path: '/financeiro',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PainelRoute = PainelRouteImport.update({
+  id: '/painel',
+  path: '/painel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RedefinirSenhaRoute = RedefinirSenhaRouteImport.update({
   id: '/redefinir-senha',
   path: '/redefinir-senha',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/bancos': typeof BancosRoute
   '/clientes': typeof ClientesRoute
   '/financeiro': typeof FinanceiroRoute
+  '/painel': typeof PainelRoute
   '/redefinir-senha': typeof RedefinirSenhaRoute
   '/relatorios': typeof RelatoriosRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/bancos': typeof BancosRoute
   '/clientes': typeof ClientesRoute
   '/financeiro': typeof FinanceiroRoute
+  '/painel': typeof PainelRoute
   '/redefinir-senha': typeof RedefinirSenhaRoute
   '/relatorios': typeof RelatoriosRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/bancos': typeof BancosRoute
   '/clientes': typeof ClientesRoute
   '/financeiro': typeof FinanceiroRoute
+  '/painel': typeof PainelRoute
   '/redefinir-senha': typeof RedefinirSenhaRoute
   '/relatorios': typeof RelatoriosRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/bancos'
     | '/clientes'
     | '/financeiro'
+    | '/painel'
     | '/redefinir-senha'
     | '/relatorios'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/bancos'
     | '/clientes'
     | '/financeiro'
+    | '/painel'
     | '/redefinir-senha'
     | '/relatorios'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/bancos'
     | '/clientes'
     | '/financeiro'
+    | '/painel'
     | '/redefinir-senha'
     | '/relatorios'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   BancosRoute: typeof BancosRoute
   ClientesRoute: typeof ClientesRoute
   FinanceiroRoute: typeof FinanceiroRoute
+  PainelRoute: typeof PainelRoute
   RedefinirSenhaRoute: typeof RedefinirSenhaRoute
   RelatoriosRoute: typeof RelatoriosRoute
 }
@@ -138,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FinanceiroRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/painel': {
+      id: '/painel'
+      path: '/painel'
+      fullPath: '/painel'
+      preLoaderRoute: typeof PainelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/redefinir-senha': {
       id: '/redefinir-senha'
       path: '/redefinir-senha'
@@ -160,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   BancosRoute: BancosRoute,
   ClientesRoute: ClientesRoute,
   FinanceiroRoute: FinanceiroRoute,
+  PainelRoute: PainelRoute,
   RedefinirSenhaRoute: RedefinirSenhaRoute,
   RelatoriosRoute: RelatoriosRoute,
 }
