@@ -29,6 +29,13 @@
       "when": 1791593229766,
       "tag": "0003_team_roles",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791593256858,
+      "tag": "0004_audit_log",
+      "breakpoints": true
     }
   ]
 }

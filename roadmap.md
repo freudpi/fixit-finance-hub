@@ -14,3 +14,4 @@
 - [x] Painel com serviços por status, faturamento do período e ordens aguardando aprovação.
 - [ ] Perfis de acesso (administrador, técnico, atendente) — prioridade.
 - [ ] Tela de equipe: cadastrar, editar, desativar e atribuir perfis.
+- [ ] Histórico de auditoria (usuário, data, alterações) em ordens, clientes e financeiro.
