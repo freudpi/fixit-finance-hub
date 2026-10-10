@@ -203,6 +203,44 @@ export type Database = {
           },
         ]
       }
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          order_id: string | null
+          read_at: string | null
+          recipient_email: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          order_id?: string | null
+          read_at?: string | null
+          recipient_email: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          order_id?: string | null
+          read_at?: string | null
+          recipient_email?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notifications_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "service_orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       service_orders: {
         Row: {
           amount: number
@@ -218,6 +256,7 @@ export type Database = {
           problem: string
           status: string
           technician: string
+          technician_id: string | null
         }
         Insert: {
           amount?: number
@@ -233,6 +272,7 @@ export type Database = {
           problem?: string
           status?: string
           technician?: string
+          technician_id?: string | null
         }
         Update: {
           amount?: number
@@ -248,6 +288,7 @@ export type Database = {
           problem?: string
           status?: string
           technician?: string
+          technician_id?: string | null
         }
         Relationships: [
           {
@@ -255,6 +296,13 @@ export type Database = {
             columns: ["client_id"]
             isOneToOne: false
             referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "service_orders_technician_id_fkey"
+            columns: ["technician_id"]
+            isOneToOne: false
+            referencedRelation: "team_members"
             referencedColumns: ["id"]
           },
         ]
