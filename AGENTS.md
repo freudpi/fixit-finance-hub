@@ -12,3 +12,5 @@
 - Keep service-management UI modules in src/components/service and content pages in TanStack routes; this separates the shared workspace from page logic.
 - Store client, order, bank and finance records in Lovable Cloud with owner-scoped RLS; every account must only access its own records.
 - Browser Data API calls use the generated RLS client; external payment calls must use authenticated server functions.
+- Business data is scoped to a workspace (the admin account id) via public.my_workspace()/my_role(); team roles live in public.team_members, never in profile/user metadata — so staff share the admin's records with database-enforced permissions.
+- Audit history and assignment notifications are written by database triggers — so every change is recorded regardless of which screen made it.
