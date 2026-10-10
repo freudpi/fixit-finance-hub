@@ -13,3 +13,4 @@
 - [ ] Cobrir módulos restantes do MapOS (estoque, produtos/serviços, vendas, garantias e permissões) — bloqueado: definir prioridade para as próximas etapas; esta versão não equivale ao MapOS completo.- [ ] Gerar PDFs de OS, orçamento e recibo com a marca.
 - [x] Painel com serviços por status, faturamento do período e ordens aguardando aprovação.
 - [ ] Perfis de acesso (administrador, técnico, atendente) — prioridade.
+- [ ] Tela de equipe: cadastrar, editar, desativar e atribuir perfis.
